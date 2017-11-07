@@ -13,7 +13,6 @@ public class WordCounter {
 
     // TODO
     this.theMap = theMap;
-    countWords(theMap.keySet().iterator());
   }
 
   /** Counts the frequencies of all words in the given iterator. */
