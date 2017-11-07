@@ -10,14 +10,14 @@ import org.junit.Test;
 public class TestWordCounter {
 
   // TODO complete this test class
-  private Map<String, Integer> fixture;
+  private Map<String, Integer> fixture = new HashMap<>();
   // TODO declare a reference to the SUT (system under test), i.e., WordCounter
   WordCounter object = new WordCounter(fixture);
 
   @Before
   public void setUp() {
     // TODO create the SUT instance
-    fixture = new HashMap<>();
+    this.fixture = fixture;
   }
 
   @After
@@ -34,7 +34,7 @@ public class TestWordCounter {
     ;
   }
 
-  //  @Test
+  @Test
   public void testGetCountNonEmpty() {
     Iterator it = Arrays.asList("asdf", "oiu", "oiu", "asdf", "qwer").iterator();
     object.countWords(it);
@@ -44,7 +44,6 @@ public class TestWordCounter {
     assertNotEquals(2, object.getCount("wer"));
     assertNotEquals(2, object.getCount("asd"));
 
-    //    assertEquals(3,fixture.size());
     // TODO run the SUT on a specific String iterator with some repeated words,
     // then use assertions to verify the correct counts
     // do this for at least two words in the iterator and two not in the iterator

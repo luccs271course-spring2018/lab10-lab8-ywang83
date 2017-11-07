@@ -24,7 +24,7 @@ public class Main {
     object.countWords(in);
 
     Set<Map.Entry<String, Integer>> mySet = aMap.entrySet();
-    System.out.println(mySet);
+    // System.out.println(mySet);
 
     List<Map.Entry<String, Integer>> myList = new ArrayList<>();
     if (mySet != null) {
@@ -43,6 +43,11 @@ public class Main {
           Collections.swap(myList, i, j);
         }
     }
-    System.out.println(myList);
+
+    if (myList.size() > 10) {
+      System.out.println(myList.subList(0, 10));
+    } else {
+      System.out.println(myList);
+    }
   }
 }
