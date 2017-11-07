@@ -18,7 +18,7 @@ public class Main {
         list.add(array[i]);
       }
     }
-//    System.out.println(list);
+    //    System.out.println(list);
     Iterator in = list.iterator();
 
     object.countWords(in);
