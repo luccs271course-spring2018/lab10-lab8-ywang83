@@ -35,7 +35,7 @@ public class TestWordCounter {
 
   }
 
-  @Test
+//  @Test
   public void testGetCountNonEmpty() {
     Iterator it = Arrays.asList("asdf", "oiu", "oiu", "asdf", "qwer").iterator();
     object.countWords(it);
