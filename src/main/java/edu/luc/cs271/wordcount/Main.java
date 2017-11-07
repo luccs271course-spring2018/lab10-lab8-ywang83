@@ -2,6 +2,8 @@ package edu.luc.cs271.wordcount;
 
 import java.util.*;
 
+import static javax.swing.UIManager.get;
+
 public class Main {
 
     public static void main(final String[] args) throws InterruptedException {
@@ -9,7 +11,7 @@ public class Main {
         // set up the scanner so that it separates words based on space and punctuation
         final Scanner input = new Scanner(System.in).useDelimiter("[^\\p{Alnum}]+");
         Map<String, Integer> aMap = new HashMap<>();
-        WordCounter count = new WordCounter(aMap);
+        WordCounter object = new WordCounter(aMap);
 
         List<String> list = new ArrayList<String>();
         while (input.hasNext()) {
@@ -19,24 +21,30 @@ public class Main {
             }
         }
         System.out.println(list);
-        for (String temp : list) {
-            String word = temp.toLowerCase();
-            if (aMap.containsKey(word)) {
-                int c = aMap.get(word);
-                aMap.put(word, c + 1);
-            } else
-                aMap.put(word, 1);
-        }
+        Iterator in = list.iterator();
 
-        Set entries = aMap.entrySet();
-        if (entries != null) {
-            Iterator iterator = entries.iterator();
+        object.countWords(in);
+
+        Set<Map.Entry<String, Integer>> mySet = aMap.entrySet();
+        System.out.println(mySet);
+
+        List<Map.Entry<String, Integer>> myList = new ArrayList<>();
+        if (mySet != null) {
+            Iterator iterator = mySet.iterator();
             while (iterator.hasNext()) {
                 Map.Entry entry = (Map.Entry) iterator.next();
-                Object key = entry.getKey();
-                Object value = entry.getValue();
-                System.out.println(key + " " + value);
+                myList.add(entry);
             }
         }
+
+        DescendingByCount comp = new DescendingByCount();
+
+        for (int i = 0; i < myList.size(); i++) {
+            for (int j=0; j<myList.size();j++)
+            if (comp.compare(myList.get(i), myList.get(j)) == 1) {
+                Collections.swap(myList,i, j);
+            }
+        }
+        System.out.println(myList);
     }
 }
